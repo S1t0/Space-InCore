@@ -36,6 +36,6 @@ Parcel: para desplegar en servidor nuestro juego  https://parceljs.org/
 <img src="public/img/logo.jpg" width="400">
 <img src="public/img/nave2.png" width="400">
 <img src="public/img/titulo.png" width="400">
-<img src="public/img/spritesactoresPrinc.png" width="400">
+<img src="public/img/actores.png" width="400">
 
 
