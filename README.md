@@ -1,7 +1,7 @@
 # Space-InCore
 Juego ambientado en el mitico Space Invaders
 
-<img src="img/logo.jpg" width="100">
+<img src="public/img/logo.jpg" width="100">
 
 
 
