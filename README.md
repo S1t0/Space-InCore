@@ -20,11 +20,13 @@ Space Incore es un juego ambientado en Space Invaders, la mecanica del juego es 
 
 git clone https://github.com/s1t0.github.io/Space-InCore/
 
-npm init -y
-
 npm install
+
+npm init -y
 
 npm run dev
 
 # Librerias
 Parcel: para desplegar en servidor nuestro juego
+
+
