@@ -29,8 +29,11 @@ npm run dev
 
 # Tecnologias
 Parcel: para desplegar en servidor nuestro juego  https://parceljs.org/
+
 Typescrypt: para asegurarnos de no cometer errores de tipado en el codigo https://www.typescriptlang.org/
+
 Lodash: para facilitarnos el picar codigo https://lodash.com/
+
 
 # Sprites
 
