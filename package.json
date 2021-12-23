@@ -1,0 +1,23 @@
+{
+  "name": "space",
+  "version": "1.0.0",
+  "description": "Juego ambientado en el mitico Space Invaders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/S1t0/Space-InCore.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/S1t0/Space-InCore/issues"
+  },
+  "homepage": "https://github.com/S1t0/Space-InCore#readme",
+  "dependencies": {
+    "parcel": "^2.0.1"
+  }
+}
