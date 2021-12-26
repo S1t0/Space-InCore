@@ -44,3 +44,11 @@ Lodash: para facilitarnos el picar codigo https://lodash.com/
 <img src="public/img/actores.png" width="400">
 
 
+
+
+
+
+
+
+
+
