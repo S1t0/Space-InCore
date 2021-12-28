@@ -460,10 +460,23 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"i8ewE":[function(require,module,exports) {
 var _nave = require("./Nave");
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext('2d');
-let actor = new _nave.Nave();
-actor.draw(ctx);
+window.onload = ()=>{
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    //ctx.fillStyle = "green";
+    //ctx.fillRect(100, 100, 10, 10);
+    let actor = new _nave.Nave();
+    console.log(actor);
+    actor.draw(ctx);
+    setInterval(()=>{
+        ctx.clearRect(0, 0, 500, 400);
+        actor.draw(ctx);
+        console.log("Bucle de renderizado");
+    }, 10);
+    document.body.addEventListener("keydown", (e)=>{
+        actor.keyboard_event(e.key);
+    });
+};
 
 },{"./Nave":"2P0nE"}],"2P0nE":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -475,14 +488,30 @@ class Nave {
         this.actorAlto = 35;
         this.actorAncho = 25;
         this.position = {
-            y=370,
-            x=550
+            y: 550,
+            x: 400
         };
+        this.moveSpeed = 25;
     }
     draw(ctx) {
         let position = this.position;
-        ctx.fillStyle = 'green';
-        ctx.fillRect(position.x, position.y, this.actorAlto, this.actorAncho);
+        let alto = this.actorAlto;
+        let ancho = this.actorAncho;
+        ctx.fillStyle = "green";
+        ctx.fillRect(position.x, position.y, alto, ancho);
+        console.log(ctx);
+    }
+    keyboard_event(key) {
+        switch(key){
+            case `ArrowRight`:
+                console.log("right");
+                this.position.x = this.position.x + this.moveSpeed;
+                break;
+            case `ArrowLeft`:
+                console.log("left");
+                this.position.x = this.position.x - this.moveSpeed;
+                break;
+        }
     }
 }
 
