@@ -459,31 +459,42 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"i8ewE":[function(require,module,exports) {
-var _nave = require("./Nave");
+var _tanque = require("./Tanque");
+var _fpsviewer = require("./FPSviewer");
 window.onload = ()=>{
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
     //ctx.fillStyle = "green";
     //ctx.fillRect(100, 100, 10, 10);
-    let actor = new _nave.Nave();
-    console.log(actor);
-    actor.draw(ctx);
-    setInterval(()=>{
-        ctx.clearRect(0, 0, 500, 400);
-        actor.draw(ctx);
-        console.log("Bucle de renderizado");
-    }, 10);
+    let actor = new _tanque.Tanque();
+    //console.log(actor);
+    //actor.draw(ctx);
+    let fps = new _fpsviewer.FPSviewer({
+        x: 15,
+        y: 25
+    });
+    let lastFrame = 0;
+    const render = (time)=>{
+        let delta = (time - lastFrame) / 1000;
+        lastFrame = time;
+        console.log(delta);
+        ctx.clearRect(0, 0, 800, 600);
+        actor.draw(ctx, delta);
+        window.requestAnimationFrame(render);
+    };
+    window.requestAnimationFrame(render);
     document.body.addEventListener("keydown", (e)=>{
         actor.keyboard_event(e.key);
     });
 };
 
-},{"./Nave":"2P0nE"}],"2P0nE":[function(require,module,exports) {
+},{"./Tanque":"iqsST","./FPSviewer":"7gt26"}],"iqsST":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Nave", ()=>Nave
+parcelHelpers.export(exports, "Tanque", ()=>Tanque
 );
-class Nave {
+var _limits = require("../utils/limits");
+class Tanque {
     constructor(){
         this.actorAlto = 35;
         this.actorAncho = 25;
@@ -493,29 +504,30 @@ class Nave {
         };
         this.moveSpeed = 25;
     }
-    draw(ctx) {
+    draw(ctx, delta) {
         let position = this.position;
         let alto = this.actorAlto;
         let ancho = this.actorAncho;
         ctx.fillStyle = "green";
         ctx.fillRect(position.x, position.y, alto, ancho);
-        console.log(ctx);
     }
     keyboard_event(key) {
         switch(key){
             case `ArrowRight`:
                 console.log("right");
+                console.log(this.position.x);
                 this.position.x = this.position.x + this.moveSpeed;
                 break;
             case `ArrowLeft`:
                 console.log("left");
+                console.log(this.position.x);
                 this.position.x = this.position.x - this.moveSpeed;
                 break;
         }
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","../utils/limits":"16pfm"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -545,6 +557,28 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["79gfX","i8ewE"], "i8ewE", "parcelRequirea0f5")
+},{}],"16pfm":[function(require,module,exports) {
+
+},{}],"7gt26":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FPSviewer", ()=>FPSviewer
+);
+class FPSviewer {
+    constructor(position){
+        this.position = position;
+    }
+    update;
+    keyboard_event() {
+    }
+    draw(delta, ctx) {
+        const fps = (1 / delta).toFixed(2);
+        ctx.font = "15px Arial";
+        ctx.fillStyle = "black";
+        ctx.fillText(`FPS:${fps}`, this.position.x, this.position.y);
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["79gfX","i8ewE"], "i8ewE", "parcelRequirea0f5")
 
 //# sourceMappingURL=index.c05ff127.js.map

@@ -1,12 +1,13 @@
-import {Nave} from "./Nave";
-const lastFrame=0;
-
-const render=(time)=>{
-    let delta=(time-lastFrame);
-    lastFrame=time;
-    ctx.clearRect(0, 0, 500, 400);
-    actor.draw(ctx);
-    console.log("Bucle de renderizado");
-    window.requestAnimationFrame(render);
+;export class FPSviewer{
+    constructor(position){
+        this.position=position;
+    }
+    update()
+    keyboard_event() {}
+	draw(delta,ctx) {
+		const fps = (1 / delta).toFixed(2);
+		ctx.font = "15px Arial";
+		ctx.fillStyle = "black";
+		ctx.fillText(`FPS:${fps}`, this.position.x, this.position.y);
+	}
 }
-window.requestAnimationFrame(render);
