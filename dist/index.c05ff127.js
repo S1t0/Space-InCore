@@ -465,7 +465,7 @@ window.onload = ()=>{
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
     let actors = [
-        new _tanque.Tanque(),
+        new _tanque.Tanque(canvas),
         new _fpsviewer.FPSviewer({
             x: 15,
             y: 25
@@ -475,10 +475,10 @@ window.onload = ()=>{
     const render = (time)=>{
         let delta = (time - lastFrame) / 1000;
         lastFrame = time;
-        console.log(delta);
-        ctx.clearRect(0, 0, 800, 600);
+        //console.log(delta);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         actors.forEach((e)=>{
-            e.draw(delta, ctx);
+            e.draw(ctx, delta);
         });
         window.requestAnimationFrame(render);
     };
@@ -500,14 +500,15 @@ parcelHelpers.export(exports, "Tanque", ()=>Tanque
 );
 var _limits = require("../utils/limits");
 class Tanque {
-    constructor(){
+    constructor(canvas1){
         this.actorAlto = 35;
         this.actorAncho = 25;
         this.position = {
             y: 550,
             x: 400
         };
-        this.moveSpeed = 25;
+        this.moveSpeed = 10;
+        this.canvas = canvas1;
     }
     draw(ctx, delta) {
         let position = this.position;
@@ -517,16 +518,19 @@ class Tanque {
         ctx.fillRect(position.x, position.y, alto, ancho);
     }
     keyboard_event(key) {
+        let newPosX = this.position.x + this.moveSpeed;
         switch(key){
             case `ArrowRight`:
                 console.log("right");
-                console.log(this.position.x);
-                this.position.x = this.position.x + this.moveSpeed;
+                //console.log(this.position.x);
+                console.log(newPosX, canvas.width - 50);
+                if (this.canvas.width - 25 > newPosX) this.position.x = newPosX;
                 break;
             case `ArrowLeft`:
                 console.log("left");
                 console.log(this.position.x);
-                this.position.x = this.position.x - this.moveSpeed;
+                newPosX = this.position.x - this.moveSpeed;
+                if (0 <= newPosX) this.position.x = newPosX;
                 break;
         }
     }
@@ -573,7 +577,7 @@ class FPSviewer {
     constructor(position){
         this.position = position;
     }
-    draw(delta, ctx) {
+    draw(ctx, delta) {
         const fps = (1 / delta).toFixed(2);
         ctx.font = '15px Arial';
         ctx.fillStyle = "black";

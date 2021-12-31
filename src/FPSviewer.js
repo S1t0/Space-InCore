@@ -2,7 +2,7 @@ export class FPSviewer{
     constructor(position){
         this.position=position;
     }
-	draw(delta,ctx) {
+	draw(ctx,delta) {
 		const fps = (1 / delta).toFixed(2);
 		 ctx.font='15px Arial';
 		 ctx.fillStyle="black";

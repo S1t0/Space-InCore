@@ -1,13 +1,14 @@
 import { checkLimits } from "../utils/limits";
 export class Tanque {
-  constructor() {
+  constructor(canvas) {
     this.actorAlto = 35;
     this.actorAncho = 25;
     this.position = {
       y: 550,
       x: 400,
     };
-    this.moveSpeed=25;
+    this.moveSpeed=10;
+    this.canvas=canvas;
   }
   
   draw(ctx,delta) {
@@ -19,16 +20,23 @@ export class Tanque {
   }
 
   keyboard_event(key) {
+    let newPosX=this.position.x + this.moveSpeed;
     switch (key) {
       case `ArrowRight`:
         console.log("right");
-        console.log(this.position.x);
-        this.position.x =this.position.x + this.moveSpeed;
+        //console.log(this.position.x);
+        console.log(newPosX,canvas.width-50);
+        if((this.canvas.width)-25>newPosX){
+          this.position.x =newPosX;
+        }
         break;
       case `ArrowLeft`:
         console.log("left");
         console.log(this.position.x);
-        this.position.x = this.position.x - this.moveSpeed;
+        newPosX=this.position.x-this.moveSpeed;
+        if(0<=newPosX){
+          this.position.x =newPosX;
+        }
         break;
     }
   }
