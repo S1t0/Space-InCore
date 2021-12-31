@@ -9,7 +9,7 @@ export class Tanque {
     };
     this.moveSpeed=25;
   }
-
+  
   draw(ctx,delta) {
     let position = this.position;
     let alto = this.actorAlto;
