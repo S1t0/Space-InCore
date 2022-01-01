@@ -459,8 +459,9 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"i8ewE":[function(require,module,exports) {
-var _tanque = require("./Tanque");
-var _fpsviewer = require("./FPSviewer");
+var _tanque = require("../actors/Tanque");
+var _fpsviewer = require("../utils/FPSviewer");
+var _nave = require("../actors/Nave");
 window.onload = ()=>{
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
@@ -469,13 +470,17 @@ window.onload = ()=>{
         new _fpsviewer.FPSviewer({
             x: 15,
             y: 25
-        })
+        }),
+        new _nave.Nave(canvas)
     ];
     let lastFrame = 0;
     const render = (time)=>{
         let delta = (time - lastFrame) / 1000;
         lastFrame = time;
         //console.log(delta);
+        actors.forEach((e)=>{
+            e.update(delta);
+        });
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         actors.forEach((e)=>{
             e.draw(ctx, delta);
@@ -493,29 +498,30 @@ window.onload = ()=>{
 //
 };
 
-},{"./Tanque":"iqsST","./FPSviewer":"7gt26"}],"iqsST":[function(require,module,exports) {
+},{"../actors/Tanque":"cKa7N","../utils/FPSviewer":"8nefv","../actors/Nave":"i53rQ"}],"cKa7N":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Tanque", ()=>Tanque
 );
-var _limits = require("../utils/limits");
 class Tanque {
     constructor(canvas1){
-        this.actorAlto = 35;
-        this.actorAncho = 25;
+        this.actorAlto = 25;
+        this.actorAncho = 35;
         this.position = {
-            y: 550,
+            y: 505,
             x: 400
         };
         this.moveSpeed = 10;
         this.canvas = canvas1;
+    }
+    update() {
     }
     draw(ctx, delta) {
         let position = this.position;
         let alto = this.actorAlto;
         let ancho = this.actorAncho;
         ctx.fillStyle = "green";
-        ctx.fillRect(position.x, position.y, alto, ancho);
+        ctx.fillRect(position.x, position.y, ancho, alto);
     }
     keyboard_event(key) {
         let newPosX = this.position.x + this.moveSpeed;
@@ -536,7 +542,7 @@ class Tanque {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","../utils/limits":"16pfm"}],"ciiiV":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -566,9 +572,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"16pfm":[function(require,module,exports) {
-
-},{}],"7gt26":[function(require,module,exports) {
+},{}],"8nefv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "FPSviewer", ()=>FPSviewer
@@ -577,11 +581,41 @@ class FPSviewer {
     constructor(position){
         this.position = position;
     }
+    update() {
+    }
     draw(ctx, delta) {
-        const fps = (1 / delta).toFixed(2);
+        const fps = (1 / delta).toFixed(0);
         ctx.font = '15px Arial';
         ctx.fillStyle = "black";
         ctx.fillText(`FPS:${fps}`, this.position.x, this.position.y);
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i53rQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Nave", ()=>Nave
+);
+class Nave {
+    constructor(canvas){
+        this.actorAlto = 15;
+        this.actorAncho = 15;
+        this.position = {
+            y: 55,
+            x: 400
+        };
+        this.moveSpeed = 0.3;
+        this.canvas = canvas;
+    }
+    draw(ctx, delta) {
+        let position = this.position;
+        let alto = this.actorAlto;
+        let ancho = this.actorAncho;
+        ctx.fillStyle = "green";
+        ctx.fillRect(position.x, position.y, ancho, alto);
+    }
+    update(canvas1) {
+        this.position.x = (this.position.x + this.moveSpeed) % 800;
     }
 }
 
