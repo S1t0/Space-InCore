@@ -5,12 +5,25 @@ import {Nave} from "../actors/Nave";
 window.onload=()=>{
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
+const naves=[];
+for(let i=0;i<5;i++){
+    for(let j=0;j<9;j++){
+        const nave=new Nave({
+            x:j*60,
+            y:i*60,
+        });
+        naves.push(nave)
+    }
+}
+
 
 let actors=[
     new Tanque(canvas),
     new FPSviewer({x:15,y:25}),
     new Nave(canvas)
+    
 ];
+
 
 let lastFrame=0;
 const render=(time)=>{
@@ -28,7 +41,4 @@ document.body.addEventListener("keydown", (e) => {
     actors.forEach(a=> { a.keyboard_event(e.key) });
 });
 
-// document.body.addEventListener("keydown", (e) => {
-// actors.keyboard_event(e.key) });
-//
 }
