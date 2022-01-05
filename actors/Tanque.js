@@ -30,12 +30,17 @@ export class Tanque {
       case `ArrowRight`:
         if((this.canvas.width)-25>newPosX){
           this.position.x =newPosX;
+          newPosX=newPosX;
+          console.log(newPosX);
+        
         }
         break;
       case `ArrowLeft`:
         newPosX=this.position.x-this.moveSpeed;
         if(0<=newPosX){
           this.position.x =newPosX;
+          newPosX=newPosX;
+          console.log(newPosX);
         }
         break;
        

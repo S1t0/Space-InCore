@@ -465,27 +465,19 @@ var _nave = require("../actors/Nave");
 window.onload = ()=>{
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
-    const naves = [];
-    for(let i = 0; i < 5; i++)for(let j = 0; j < 9; j++){
-        const nave = new _nave.Nave({
-            x: j * 60,
-            y: i * 60
-        });
-        naves.push(nave);
-    }
     let actors = [
         new _tanque.Tanque(canvas),
         new _fpsviewer.FPSviewer({
             x: 15,
             y: 25
         }),
-        new _nave.Nave(canvas)
+        new _nave.Nave(canvas),
+        new disparo(canvas), 
     ];
     let lastFrame = 0;
     const render = (time)=>{
         let delta = (time - lastFrame) / 1000;
         lastFrame = time;
-        //console.log(delta);
         actors.forEach((e)=>{
             e.update(delta);
         });
@@ -537,11 +529,17 @@ class Tanque {
         let newPosX = this.position.x + this.moveSpeed;
         switch(key){
             case `ArrowRight`:
-                if (this.canvas.width - 25 > newPosX) this.position.x = newPosX;
+                if (this.canvas.width - 25 > newPosX) {
+                    this.position.x = newPosX;
+                    console.log(newPosX);
+                }
                 break;
             case `ArrowLeft`:
                 newPosX = this.position.x - this.moveSpeed;
-                if (0 <= newPosX) this.position.x = newPosX;
+                if (0 <= newPosX) {
+                    this.position.x = newPosX;
+                    console.log(newPosX);
+                }
                 break;
         }
     }
@@ -578,9 +576,28 @@ exports.export = function(dest, destName, get) {
 };
 
 },{}],"e8r6v":[function(require,module,exports) {
+var _tanque = require("../actors/Tanque");
+const imagenBala = require("../public/img/disparo.png");
+class Disparo {
+    constructor(canvas, { x , y  }){
+        this.disparos = [];
+        this.velocidad = 2;
+        this.ancho = 2;
+        this.alto = 5;
+        this.posicion = _tanque.Tanque;
+        this.image = new Image();
+        this.image.src = imagenBala;
+    }
+    keyboard_event(key) {
+        switch(key){
+            case `Space`:
+                ctx.drawImage(this.image, 500, 500, alto, ancho);
+        }
+    }
+}
 
-},{}],"32npM":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "nave.bd3197fd.png" + "?" + Date.now();
+},{"../actors/Tanque":"cKa7N","../public/img/disparo.png":"8AV93"}],"8AV93":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "disparo.e6430475.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
 "use strict";
@@ -617,7 +634,10 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"8nefv":[function(require,module,exports) {
+},{}],"32npM":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "nave.bd3197fd.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"chiK4"}],"8nefv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "FPSviewer", ()=>FPSviewer
@@ -641,53 +661,37 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Nave", ()=>Nave
 );
+const arrayNaves = [
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX",
+    "XXXXXXXXXXX"
+].map((f)=>f.split("")
+);
 const imagenNave = require("../public/img/alien.png");
 class Nave {
     constructor(canvas){
-        this.actorAlto = 15;
-        this.actorAncho = 15;
+        this.actorAlto = 25;
+        this.actorAncho = 25;
         this.position = {
-            y: 55,
-            x: 400
+            y: 40,
+            x: 55
         };
         this.image = new Image();
         this.image.src = imagenNave;
         this.moveSpeed = 0.3;
-        this.canvas = canvas;
-        this.movimientoX = 25;
-        this.movimientoY = 20;
+        this.naves = arrayNaves;
     }
     draw(ctx, delta) {
-        let position = this.position;
-        let alto = this.actorAlto;
-        let ancho = this.actorAncho;
-        //ctx.fillStyle = "green";
-        //ctx.fillRect(position.x, position.y, ancho, alto);
-        ctx.drawImage(this.image, this.position.x, this.position.y, 40, 40);
-        const naves = [];
-        for(let i = 0; i < 5; i++)for(let j = 0; j < 9; j++){
-            const nave = new Nave({
-                x: i * 60,
-                y: j * 60
-            });
-            naves.push(nave);
-        }
+        // let position = this.position;
+        // let alto = this.actorAlto;
+        // let ancho = this.actorAncho;
+        //ctx.drawImage(this.image,this.position.x,this.position.y,40,40);
+        for(let x = 1; x < arrayNaves.length; x++)for(let i = 1; i < arrayNaves[x].length; i++)arrayNaves[x][i] == "X" && ctx.drawImage(this.image, i * this.position.x + 70, x * this.position.y + 30, this.actorAlto, this.actorAncho);
     }
-    update(canvas1, delta1) {
-        this.position.x = this.position.x + this.moveSpeed;
-        let newPos = this.position.x + this.moveSpeed;
-        if (newPos < this.canvas.width) {
-            this.position.x = newPos;
-            console.log(newPos);
-        } else {
-            this.position.x, this.moveSpeed;
-            console.log(newPos);
-        }
-    // const leftLimit=this.position.x % width ===0;
-    // //const rightLimit=this.position.x % width === width-1;
-    // if(leftLimit){
-    //   this.position.x=(this.position.x-this.moveSpeed)
-    // }
+    update() {
     }
 }
 
