@@ -461,18 +461,19 @@ function hmrAcceptRun(bundle, id) {
 },{}],"i8ewE":[function(require,module,exports) {
 var _tanque = require("../actors/Tanque");
 var _fpsviewer = require("../utils/FPSviewer");
-var _nave = require("../actors/Nave");
+var _aliens = require("../actors/Aliens");
+var _disparo = require("../actors/Disparo");
 window.onload = ()=>{
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
     let actors = [
         new _tanque.Tanque(canvas),
+        new _aliens.Alien(canvas),
         new _fpsviewer.FPSviewer({
             x: 15,
             y: 25
         }),
-        new _nave.Nave(canvas),
-        new disparo(canvas), 
+        new _disparo.Disparo(canvas), 
     ];
     let lastFrame = 0;
     const render = (time)=>{
@@ -495,24 +496,25 @@ window.onload = ()=>{
     });
 };
 
-},{"../actors/Tanque":"cKa7N","../utils/FPSviewer":"8nefv","../actors/Nave":"i53rQ"}],"cKa7N":[function(require,module,exports) {
+},{"../actors/Tanque":"cKa7N","../utils/FPSviewer":"8nefv","../actors/Disparo":"1Q4h1","../actors/Aliens":"g65oh"}],"cKa7N":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Tanque", ()=>Tanque
 );
-var _disparo = require("./disparo");
+var _script = require("../src/script");
+var _disparo = require("../actors/Disparo");
 const imagenTanque = require("../public/img/nave.png");
 class Tanque {
     constructor(canvas){
-        this.actorAlto = 35;
-        this.actorAncho = 55;
+        this.actorAlto = 40;
+        this.actorAncho = 70;
         this.position = {
             y: 505,
             x: 400
         };
         this.image = new Image();
         this.image.src = imagenTanque;
-        this.moveSpeed = 10;
+        this.moveSpeed = 5;
         this.canvas = canvas;
     }
     update() {
@@ -522,30 +524,32 @@ class Tanque {
         let alto = this.actorAlto;
         let ancho = this.actorAncho;
         ctx.drawImage(this.image, this.position.x, this.position.y, alto, ancho);
-    // ctx.fillStyle = "green";
-    // ctx.fillRect(position.x, position.y, ancho, alto);
     }
+    // drawDisparo(ctx,delta) {
+    //   for (let i = 0; i < this.disparos.length; i++) {
+    //       let dis = this.disparos[i];
+    //       ctx.fillStyle = "red";
+    //       ctx.fillRect(this.position.x, this.position.y-this.velocidad, this.ancho, this.alto);
+    //        if (dis.y <= 0) {
+    //           this.disparos.splice(i, 1);
+    //         }
+    //       }
+    //     }
     keyboard_event(key) {
         let newPosX = this.position.x + this.moveSpeed;
         switch(key){
             case `ArrowRight`:
-                if (this.canvas.width - 25 > newPosX) {
-                    this.position.x = newPosX;
-                    console.log(newPosX);
-                }
+                if (this.canvas.width - 25 > newPosX) this.position.x = newPosX;
                 break;
             case `ArrowLeft`:
                 newPosX = this.position.x - this.moveSpeed;
-                if (0 <= newPosX) {
-                    this.position.x = newPosX;
-                    console.log(newPosX);
-                }
+                if (0 <= newPosX) this.position.x = newPosX;
                 break;
         }
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./disparo":"e8r6v","../public/img/nave.png":"32npM"}],"ciiiV":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","../public/img/nave.png":"32npM","../src/script":"i8ewE","../actors/Disparo":"1Q4h1"}],"ciiiV":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -575,29 +579,8 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"e8r6v":[function(require,module,exports) {
-var _tanque = require("../actors/Tanque");
-const imagenBala = require("../public/img/disparo.png");
-class Disparo {
-    constructor(canvas, { x , y  }){
-        this.disparos = [];
-        this.velocidad = 2;
-        this.ancho = 2;
-        this.alto = 5;
-        this.posicion = _tanque.Tanque;
-        this.image = new Image();
-        this.image.src = imagenBala;
-    }
-    keyboard_event(key) {
-        switch(key){
-            case `Space`:
-                ctx.drawImage(this.image, 500, 500, alto, ancho);
-        }
-    }
-}
-
-},{"../actors/Tanque":"cKa7N","../public/img/disparo.png":"8AV93"}],"8AV93":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "disparo.e6430475.png" + "?" + Date.now();
+},{}],"32npM":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "nave.bd3197fd.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
 "use strict";
@@ -634,10 +617,44 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"32npM":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "nave.bd3197fd.png" + "?" + Date.now();
+},{}],"1Q4h1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Disparo", ()=>Disparo
+);
+var _tanque = require("./Tanque");
+class Disparo {
+    constructor(canvas1){
+        this.disparos = [];
+        this.velocidad = 2;
+        this.position = {
+            x: 400,
+            y: 400
+        };
+        this.ancho = 2;
+        this.alto = 5;
+    }
+    update() {
+    }
+    draw(ctx, delta) {
+        for(let i = 0; i < this.disparos.length; i++){
+            let dis = this.disparos[i];
+            ctx.fillStyle = "red";
+            ctx.fillRect(this.position.x, this.position.y - this.velocidad, this.ancho, this.alto);
+            if (dis.y <= 0) this.disparos.splice(i, 1);
+        }
+    }
+    keyboard_event(key, draw) {
+        switch(key){
+            case `Space`:
+                this.disparos.push(new Disparo(canvas));
+                console.log(keycode);
+                break;
+        }
+    }
+}
 
-},{"./helpers/bundle-url":"chiK4"}],"8nefv":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./Tanque":"cKa7N"}],"8nefv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "FPSviewer", ()=>FPSviewer
@@ -656,46 +673,42 @@ class FPSviewer {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"i53rQ":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g65oh":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Nave", ()=>Nave
+parcelHelpers.export(exports, "Alien", ()=>Alien
 );
-const arrayNaves = [
+const arrayAliens = [
     "XXXXXXXXXXX",
     "XXXXXXXXXXX",
     "XXXXXXXXXXX",
     "XXXXXXXXXXX",
-    "XXXXXXXXXXX",
-    "XXXXXXXXXXX"
+    "XXXXXXXXXXX", 
 ].map((f)=>f.split("")
 );
-const imagenNave = require("../public/img/alien.png");
-class Nave {
+const imagenAlien = require("../public/img/alien.png");
+class Alien {
     constructor(canvas){
-        this.actorAlto = 25;
-        this.actorAncho = 25;
+        this.actorAlto = 35;
+        this.actorAncho = 30;
         this.position = {
             y: 40,
             x: 55
         };
         this.image = new Image();
-        this.image.src = imagenNave;
+        this.image.src = imagenAlien;
         this.moveSpeed = 0.3;
-        this.naves = arrayNaves;
+        this.aliens = arrayAliens;
     }
     draw(ctx, delta) {
-        // let position = this.position;
-        // let alto = this.actorAlto;
-        // let ancho = this.actorAncho;
-        //ctx.drawImage(this.image,this.position.x,this.position.y,40,40);
-        for(let x = 1; x < arrayNaves.length; x++)for(let i = 1; i < arrayNaves[x].length; i++)arrayNaves[x][i] == "X" && ctx.drawImage(this.image, i * this.position.x + 70, x * this.position.y + 30, this.actorAlto, this.actorAncho);
+        for(let x = 0; x < arrayAliens.length; x++)for(let i = 0; i < arrayAliens[x].length; i++)arrayAliens[x][i] == "X" && ctx.drawImage(this.image, i * this.position.x + 100, x * this.position.y + 50, this.actorAlto, this.actorAncho);
     }
-    update() {
+    update(ctx1, canvas1) {
+        this.arrayAliens, this.moveSpeed;
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","../public/img/alien.png":"jeTVA"}],"jeTVA":[function(require,module,exports) {
+},{"../public/img/alien.png":"jeTVA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jeTVA":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "alien.f83b9dbf.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}]},["79gfX","i8ewE"], "i8ewE", "parcelRequirea0f5")

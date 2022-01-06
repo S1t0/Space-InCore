@@ -90,7 +90,7 @@
 58C:\Users\andre\space\node_modules\weak-lru-cache\README.md132847583096203652 0
 76C:\Users\andre\space\node_modules\@babel\helper-hoist-variables\package.json132847583091787327 0
 43C:\Users\andre\space\node_modules\pn\dns.js132847583099723469 0
-25C:\Users\andre\space\dist132858896124407785 1
+25C:\Users\andre\space\dist132859646641737400 1
 55C:\Users\andre\space\node_modules\filelist\package.json132847583091707252 0
 81C:\Users\andre\space\node_modules\lmdb-store\prebuilds\darwin-x64\node.abi83.node132847583112915475 0
 58C:\Users\andre\space\node_modules\has-tostringtag\index.js132847583094018114 0
@@ -138,7 +138,7 @@
 70C:\Users\andre\space\node_modules\core-js\internals\object-iterator.js132847583124476012 0
 78C:\Users\andre\space\node_modules\string.prototype.trimstart\implementation.js132847583095109230 0
 49C:\Users\andre\space\node_modules\sha.js\index.js132847583092883205 0
-27C:\Users\andre\space\actors132857038494228718 1
+27C:\Users\andre\space\actors132859592381359100 1
 87C:\Users\andre\space\node_modules\abortcontroller-polyfill\dist\polyfill-patch-fetch.js132847583096591490 0
 67C:\Users\andre\space\node_modules\svgo\plugins\removeHiddenElems.js132847583107270344 0
 83C:\Users\andre\space\node_modules\performance-now\test\scripts\initial-value.coffee132847583100764417 0
@@ -204,7 +204,7 @@
 59C:\Users\andre\space\node_modules\yaml\browser\parse-cst.js132847583102976428 0
 80C:\Users\andre\space\node_modules\icss-utils\node_modules\source-map\lib\util.js132847583100484159 0
 66C:\Users\andre\space\node_modules\core-js\actual\symbol\replace.js132847583125598097 0
-34C:\Users\andre\space\src\script.js132858886675196721 0
+34C:\Users\andre\space\src\script.js132859610663385259 0
 70C:\Users\andre\space\node_modules\lmdb-store\dependencies\lmdb-data-v1132847583088987617 1
 42C:\Users\andre\space\node_modules\asynckit132847583096511419 1
 75C:\Users\andre\space\node_modules\postcss-ordered-values\dist\rules\grid.js132847583096961817 0
@@ -488,7 +488,7 @@
 63C:\Users\andre\space\node_modules\events\tests\legacy-compat.js132847583096991856 0
 68C:\Users\andre\space\node_modules\jsdom\lib\jsdom\virtual-console.js132847583114767163 0
 45C:\Users\andre\space\node_modules\assert-plus132847583092147664 1
-37C:\Users\andre\space\actors\Tanque.js132858871937571138 0
+37C:\Users\andre\space\actors\Tanque.js132859646640946637 0
 46C:\Users\andre\space\node_modules\astral-regex132847583092167674 1
 90C:\Users\andre\space\node_modules\jsdom\lib\jsdom\living\navigator\NavigatorOnLine-impl.js132847583113065614 0
 71C:\Users\andre\space\node_modules\utility-types\dist\utility-types.d.ts132847583101895447 0
@@ -1349,7 +1349,7 @@
 97C:\Users\andre\space\node_modules\postcss-modules-extract-imports\node_modules\chalk\package.json132847583088036750 0
 47C:\Users\andre\space\node_modules\abab\index.js132847583090438963 0
 67C:\Users\andre\space\node_modules\es-abstract\2021\BigInt\divide.js132847583111984630 0
-44C:\Users\andre\space\dist\index.de101254.css132858886729313339 0
+44C:\Users\andre\space\dist\index.de101254.css132859646302041997 0
 58C:\Users\andre\space\node_modules\cipher-base\package.json132847583086496860 0
 61C:\Users\andre\space\node_modules\public-encrypt\node_modules132847583068710668 1
 66C:\Users\andre\space\node_modules\side-channel\.github\FUNDING.yml132847583097021885 0
@@ -1749,7 +1749,7 @@
 61C:\Users\andre\space\node_modules\ajv\scripts\compile-dots.js132847583104617935 0
 45C:\Users\andre\space\node_modules\esprima\bin132847583094448502 1
 70C:\Users\andre\space\node_modules\uri-js\dist\esnext\schemes\http.d.ts132847583105348600 0
-44C:\Users\andre\space\dist\alien.f83b9dbf.png132858886729353366 0
+44C:\Users\andre\space\dist\alien.f83b9dbf.png132859646302031989 0
 70C:\Users\andre\space\node_modules\core-js\es\array\virtual\iterator.js132847583123354990 0
 43C:\Users\andre\space\node_modules\is-string132847583096721597 1
 68C:\Users\andre\space\node_modules\caniuse-lite\data\features\midi.js132847583115637959 0
@@ -3382,7 +3382,6 @@
 75C:\Users\andre\space\node_modules\core-js\es\array\virtual\last-index-of.js132847583123665273 0
 64C:\Users\andre\space\node_modules\core-js\features\array\flat.js132847583119071094 0
 58C:\Users\andre\space\node_modules\pako\lib\zlib\deflate.js132847583097081928 0
-35C:\Users\andre\space\actors\Nave.js132858862158940235 0
 63C:\Users\andre\space\node_modules\core-js\actual\reflect\get.js132847583121343148 0
 61C:\Users\andre\space\node_modules\har-schema\lib\content.json132847583095917271 0
 48C:\Users\andre\space\node_modules\util\README.md132847583095699818 0
@@ -4018,7 +4017,7 @@
 86C:\Users\andre\space\node_modules\jsdom\lib\jsdom\living\generated\HTMLTitleElement.js132847583111384083 0
 58C:\Users\andre\space\node_modules\postcss\lib\at-rule.d.ts132847583104677985 0
 73C:\Users\andre\space\node_modules\purgecss\node_modules\commander\LICENSE132847583088006722 0
-46C:\Users\andre\space\dist\disparo.e6430475.png132858886729313339 0
+46C:\Users\andre\space\dist\disparo.e6430475.png132859575437587921 0
 76C:\Users\andre\space\node_modules\core-js\modules\es.typed-array.index-of.js132847583116018303 0
 87C:\Users\andre\space\node_modules\jsdom\lib\jsdom\living\generated\NavigatorLanguage.js132847583111764436 0
 64C:\Users\andre\space\node_modules\core-js\actual\number\index.js132847583121983740 0
@@ -4629,7 +4628,7 @@
 65C:\Users\andre\space\node_modules\convert-source-map\package.json132847583090248793 0
 58C:\Users\andre\space\node_modules\string-hash\package.json132847583086246626 0
 92C:\Users\andre\space\node_modules\postcss-modules-values\node_modules\color-convert\route.js132847583095459600 0
-48C:\Users\andre\space\dist\index.de101254.css.map132858886729333353 0
+48C:\Users\andre\space\dist\index.de101254.css.map132859646302072034 0
 55C:\Users\andre\space\node_modules\des.js\lib\des\cbc.js132847583092247753 0
 62C:\Users\andre\space\node_modules\parse5\lib\common\doctype.js132847583090679181 0
 49C:\Users\andre\space\node_modules\split2\bench.js132847583088947582 0
@@ -4863,6 +4862,7 @@
 101C:\Users\andre\space\node_modules\@parcel\node-resolver-core\test\fixture\node_modules\@scope\pkg\foo132847583095049173 1
 61C:\Users\andre\space\node_modules\core-js\actual\math\imul.js132847583121653435 0
 59C:\Users\andre\space\node_modules\sshpk\lib\formats\x509.js132847583104788085 0
+38C:\Users\andre\space\actors\Disparo.js132859631587104455 0
 64C:\Users\andre\space\node_modules\core-js\es\instance\reverse.js132847583125678170 0
 54C:\Users\andre\space\node_modules\sshpk\bin\sshpk-sign132847583094979107 0
 54C:\Users\andre\space\node_modules\lodash\fp\attempt.js132847583112925492 0
@@ -13500,7 +13500,7 @@
 96C:\Users\andre\space\node_modules\core-js\internals\typed-array-constructors-require-wrappers.js132847583127995526 0
 88C:\Users\andre\space\node_modules\core-js\internals\typed-array-from-species-and-list.js132847583127995526 0
 86C:\Users\andre\space\node_modules\core-js\internals\typed-array-species-constructor.js132847583128015541 0
-43C:\Users\andre\space\dist\nave.bd3197fd.png132858886729303325 0
+43C:\Users\andre\space\dist\nave.bd3197fd.png132859646302031989 0
 88C:\Users\andre\space\node_modules\core-js\internals\wrap-error-constructor-with-cause.js132847583128464580 0
 69C:\Users\andre\space\node_modules\core-js\features\aggregate-error.js132847583103506911 0
 56C:\Users\andre\space\node_modules\core-js\features\array132847583128444565 1
@@ -15835,7 +15835,7 @@
 57C:\Users\andre\space\node_modules\@parcel\core\index.d.ts132847583111474164 0
 51C:\Users\andre\space\node_modules\@parcel\core\test132847583110233040 1
 70C:\Users\andre\space\node_modules\@parcel\core\test\AssetGraph.test.js132847583103366792 0
-46C:\Users\andre\space\dist\favicon.f42fdf88.ico132858886729303325 0
+46C:\Users\andre\space\dist\favicon.f42fdf88.ico132859646302022010 0
 71C:\Users\andre\space\node_modules\@parcel\core\test\BundleGraph.test.js132847583105789001 0
 72C:\Users\andre\space\node_modules\@parcel\core\test\EntryRequest.test.js132847583107960968 0
 66C:\Users\andre\space\node_modules\@parcel\core\test\Parcel.test.js132847583109102005 0
@@ -16078,7 +16078,6 @@
 77C:\Users\andre\space\node_modules\@babel\types\lib\comments\removeComments.js132847583104487806 0
 65C:\Users\andre\space\node_modules\@babel\types\lib\clone\clone.js132847583101785349 0
 79C:\Users\andre\space\node_modules\@babel\types\lib\clone\cloneDeepWithoutLoc.js132847583102866333 0
-38C:\Users\andre\space\actors\disparo.js132858896248877539 0
 75C:\Users\andre\space\node_modules\@babel\types\lib\clone\cloneWithoutLoc.js132847583103236669 0
 65C:\Users\andre\space\node_modules\@babel\types\lib\builders\react132847583100914559 1
 87C:\Users\andre\space\node_modules\@babel\types\lib\builders\flow\createFlowUnionType.js132847583097192035 0
@@ -16283,10 +16282,11 @@
 48C:\Users\andre\space\node_modules\.bin\uncss.ps1132847583128917744 0
 47C:\Users\andre\space\node_modules\.bin\uuid.ps1132847583128907746 0
 48C:\Users\andre\space\node_modules\.bin\which.ps1132847583128907746 0
-43C:\Users\andre\space\dist\index.c05ff127.js132858896124397766 0
-47C:\Users\andre\space\dist\index.c05ff127.js.map132858896124407785 0
-36C:\Users\andre\space\dist\index.html132858886729471040 0
+43C:\Users\andre\space\dist\index.c05ff127.js132859646641707373 0
+47C:\Users\andre\space\dist\index.c05ff127.js.map132859646641727394 0
+36C:\Users\andre\space\dist\index.html132859646302082035 0
 44C:\Users\andre\space\dist\nave2.bd14c81d.png132857191368013076 0
 43C:\Users\andre\space\dist\space.45ee5e70.js132851874474665723 0
+37C:\Users\andre\space\actors\Aliens.js132859646301161137 0
 43C:\Users\andre\space\.github\ISSUE_TEMPLATE132847551705300536 1
 57C:\Users\andre\space\.github\ISSUE_TEMPLATE\bug_report.md132847551705290524 0
