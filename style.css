@@ -5,14 +5,9 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url(./public/img/fondo.jpg.webp);
+    background-size: cover;
     
-
 }
 
 
-#canvas{
-    border: solid black 1px; 
-    
-
-
-}

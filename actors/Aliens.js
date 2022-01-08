@@ -1,37 +1,36 @@
+import { script } from "../src/script";
+import { alienImage } from "../public/img/alien.png";
 
-const arrayAliens =[
-  "XXXXXXXXXXX",
-  "XXXXXXXXXXX",
-  "XXXXXXXXXXX",
-  "XXXXXXXXXXX",
-  "XXXXXXXXXXX",
-].map(f=>f.split(""));
+const arrayAliens = [];
 const imagenAlien = require("../public/img/alien.png");
 export class Alien {
   constructor(canvas) {
     this.actorAlto = 35;
     this.actorAncho = 30;
-     this.position = {
-       y: 40,
-       x: 55,
-     };
-    this.image= new Image();
-    this.image.src=imagenAlien;
-    this.moveSpeed =0.3;
-    this.aliens=arrayAliens;
+    this.position = {
+      y: 40,
+      x: 55,
+    };
+    this.image = new Image();
+    this.image.src = imagenAlien;
+    this.moveSpeed = 0.2;
+    this.aliens = arrayAliens;
+    this.canvas = canvas;
   }
+
   draw(ctx, delta) {
-    for(let x=0;x<arrayAliens.length;x++){
-      for(let i=0;i<arrayAliens[x].length;i++){
-        arrayAliens[x][i]=="X" && ctx.drawImage(this.image,(i*this.position.x)+100,(x*this.position.y)+50,this.actorAlto,this.actorAncho);
+    for (let fila = 0; fila < 5; fila++) {
+      for (let colum = 0; colum < 11; colum++) {
+        const ali = ctx.drawImage(
+          this.image,
+          colum * this.position.x + 100,
+          fila * this.position.y + 50,
+          this.actorAlto,
+          this.actorAncho
+        );
+        arrayAliens.push(ali);
       }
     }
   }
-  
-  update(ctx,canvas) {
-   this.arrayAliens+this.moveSpeed;
-    }
-} 
- 
-
-            
+  update(ctx, delta) {}
+}

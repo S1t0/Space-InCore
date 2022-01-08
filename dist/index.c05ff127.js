@@ -464,16 +464,15 @@ var _fpsviewer = require("../utils/FPSviewer");
 var _aliens = require("../actors/Aliens");
 var _disparo = require("../actors/Disparo");
 window.onload = ()=>{
-    var canvas = document.getElementById('canvas');
-    var ctx = canvas.getContext('2d');
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
     let actors = [
         new _tanque.Tanque(canvas),
         new _aliens.Alien(canvas),
         new _fpsviewer.FPSviewer({
             x: 15,
             y: 25
-        }),
-        new _disparo.Disparo(canvas), 
+        }), 
     ];
     let lastFrame = 0;
     const render = (time)=>{
@@ -503,7 +502,7 @@ parcelHelpers.export(exports, "Tanque", ()=>Tanque
 );
 var _script = require("../src/script");
 var _disparo = require("../actors/Disparo");
-const imagenTanque = require("../public/img/nave.png");
+const imagenTanque = require("../public/img/nave.png"); //me daba fallo con el import
 class Tanque {
     constructor(canvas){
         this.actorAlto = 40;
@@ -525,16 +524,6 @@ class Tanque {
         let ancho = this.actorAncho;
         ctx.drawImage(this.image, this.position.x, this.position.y, alto, ancho);
     }
-    // drawDisparo(ctx,delta) {
-    //   for (let i = 0; i < this.disparos.length; i++) {
-    //       let dis = this.disparos[i];
-    //       ctx.fillStyle = "red";
-    //       ctx.fillRect(this.position.x, this.position.y-this.velocidad, this.ancho, this.alto);
-    //        if (dis.y <= 0) {
-    //           this.disparos.splice(i, 1);
-    //         }
-    //       }
-    //     }
     keyboard_event(key) {
         let newPosX = this.position.x + this.moveSpeed;
         switch(key){
@@ -648,7 +637,6 @@ class Disparo {
         switch(key){
             case `Space`:
                 this.disparos.push(new Disparo(canvas));
-                console.log(keycode);
                 break;
         }
     }
@@ -667,8 +655,8 @@ class FPSviewer {
     }
     draw(ctx, delta) {
         const fps = (1 / delta).toFixed(0);
-        ctx.font = '15px Arial';
-        ctx.fillStyle = "black";
+        ctx.font = '18px Arial';
+        ctx.fillStyle = "white";
         ctx.fillText(`FPS:${fps}`, this.position.x, this.position.y);
     }
 }
@@ -678,14 +666,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Alien", ()=>Alien
 );
-const arrayAliens = [
-    "XXXXXXXXXXX",
-    "XXXXXXXXXXX",
-    "XXXXXXXXXXX",
-    "XXXXXXXXXXX",
-    "XXXXXXXXXXX", 
-].map((f)=>f.split("")
-);
+var _script = require("../src/script");
+var _alienPng = require("../public/img/alien.png");
+const arrayAliens = [];
 const imagenAlien = require("../public/img/alien.png");
 class Alien {
     constructor(canvas){
@@ -697,18 +680,21 @@ class Alien {
         };
         this.image = new Image();
         this.image.src = imagenAlien;
-        this.moveSpeed = 0.3;
+        this.moveSpeed = 0.2;
         this.aliens = arrayAliens;
+        this.canvas = canvas;
     }
     draw(ctx, delta) {
-        for(let x = 0; x < arrayAliens.length; x++)for(let i = 0; i < arrayAliens[x].length; i++)arrayAliens[x][i] == "X" && ctx.drawImage(this.image, i * this.position.x + 100, x * this.position.y + 50, this.actorAlto, this.actorAncho);
+        for(let fila = 0; fila < 5; fila++)for(let colum = 0; colum < 11; colum++){
+            const ali = ctx.drawImage(this.image, colum * this.position.x + 100, fila * this.position.y + 50, this.actorAlto, this.actorAncho);
+            arrayAliens.push(ali);
+        }
     }
-    update(ctx1, canvas1) {
-        this.arrayAliens, this.moveSpeed;
+    update(ctx1, delta1) {
     }
 }
 
-},{"../public/img/alien.png":"jeTVA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jeTVA":[function(require,module,exports) {
+},{"../src/script":"i8ewE","../public/img/alien.png":"jeTVA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jeTVA":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "alien.f83b9dbf.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}]},["79gfX","i8ewE"], "i8ewE", "parcelRequirea0f5")

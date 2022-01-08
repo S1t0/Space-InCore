@@ -5,15 +5,11 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url(fondo.jpg.a220634d.webp);
+    background-size: cover;
     
-
 }
 
 
-#canvas{
-    border: solid black 1px; 
-    
 
-
-}
 /*# sourceMappingURL=index.de101254.css.map */
