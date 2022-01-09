@@ -467,8 +467,8 @@ window.onload = ()=>{
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
     let actors = [
-        new _tanque.Tanque(canvas),
-        new _aliens.Alien(canvas),
+        new _tanque.Tanque(ctx),
+        new _aliens.Alien(ctx),
         new _fpsviewer.FPSviewer({
             x: 15,
             y: 25
@@ -495,13 +495,11 @@ window.onload = ()=>{
     });
 };
 
-},{"../actors/Tanque":"cKa7N","../utils/FPSviewer":"8nefv","../actors/Disparo":"1Q4h1","../actors/Aliens":"g65oh"}],"cKa7N":[function(require,module,exports) {
+},{"../actors/Tanque":"kN2hs","../utils/FPSviewer":"j9gyD","../actors/Disparo":"bA3GF","../actors/Aliens":"23Ft1"}],"kN2hs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Tanque", ()=>Tanque
 );
-var _script = require("../src/script");
-var _disparo = require("../actors/Disparo");
 const imagenTanque = require("../public/img/nave.png"); //me daba fallo con el import
 class Tanque {
     constructor(canvas){
@@ -515,6 +513,7 @@ class Tanque {
         this.image.src = imagenTanque;
         this.moveSpeed = 5;
         this.canvas = canvas;
+        this.canvasAncho = 800;
     }
     update() {
     }
@@ -528,7 +527,7 @@ class Tanque {
         let newPosX = this.position.x + this.moveSpeed;
         switch(key){
             case `ArrowRight`:
-                if (this.canvas.width - 25 > newPosX) this.position.x = newPosX;
+                if (this.canvasAncho - 25 > newPosX) this.position.x = newPosX;
                 break;
             case `ArrowLeft`:
                 newPosX = this.position.x - this.moveSpeed;
@@ -538,37 +537,7 @@ class Tanque {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","../public/img/nave.png":"32npM","../src/script":"i8ewE","../actors/Disparo":"1Q4h1"}],"ciiiV":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"32npM":[function(require,module,exports) {
+},{"../public/img/nave.png":"32npM","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"32npM":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "nave.bd3197fd.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
@@ -606,14 +575,77 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"1Q4h1":[function(require,module,exports) {
+},{}],"ciiiV":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"j9gyD":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "FPSviewer", ()=>FPSviewer
+);
+var _actor = require("../src/Actor");
+class FPSviewer extends _actor.Actor {
+    update() {
+    }
+    draw(ctx, delta) {
+        const fps = (1 / delta).toFixed(0);
+        ctx.font = '18px Arial';
+        ctx.fillStyle = "white";
+        ctx.fillText(`FPS:${fps}`, this.position.x, this.position.y);
+    }
+}
+
+},{"../src/Actor":"5ReBW","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5ReBW":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Actor", ()=>Actor
+);
+class Actor {
+    constructor(position){
+        this.position = position;
+    }
+    update(ctx, delta) {
+    }
+    draw(ctx1, delta1) {
+    }
+    keyboard_event(key) {
+    }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bA3GF":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Disparo", ()=>Disparo
 );
-var _tanque = require("./Tanque");
 class Disparo {
-    constructor(canvas1){
+    constructor(position){
         this.disparos = [];
         this.velocidad = 2;
         this.position = {
@@ -630,48 +662,22 @@ class Disparo {
             let dis = this.disparos[i];
             ctx.fillStyle = "red";
             ctx.fillRect(this.position.x, this.position.y - this.velocidad, this.ancho, this.alto);
-            if (dis.y <= 0) this.disparos.splice(i, 1);
-        }
-    }
-    keyboard_event(key, draw) {
-        switch(key){
-            case `Space`:
-                this.disparos.push(new Disparo(canvas));
-                break;
+            if (dis[i] <= 0) this.disparos.splice(i, 1);
         }
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","./Tanque":"cKa7N"}],"8nefv":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "FPSviewer", ()=>FPSviewer
-);
-class FPSviewer {
-    constructor(position){
-        this.position = position;
-    }
-    update() {
-    }
-    draw(ctx, delta) {
-        const fps = (1 / delta).toFixed(0);
-        ctx.font = '18px Arial';
-        ctx.fillStyle = "white";
-        ctx.fillText(`FPS:${fps}`, this.position.x, this.position.y);
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"g65oh":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"23Ft1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Alien", ()=>Alien
 );
-var _script = require("../src/script");
-var _alienPng = require("../public/img/alien.png");
+var _actor = require("../src/Actor");
 const arrayAliens = [];
 const imagenAlien = require("../public/img/alien.png");
-class Alien {
-    constructor(canvas){
+class Alien extends _actor.Actor {
+    constructor(position){
+        super(position);
         this.actorAlto = 35;
         this.actorAncho = 30;
         this.position = {
@@ -682,7 +688,7 @@ class Alien {
         this.image.src = imagenAlien;
         this.moveSpeed = 0.2;
         this.aliens = arrayAliens;
-        this.canvas = canvas;
+        this.canvas = this.canvas;
     }
     draw(ctx, delta) {
         for(let fila = 0; fila < 5; fila++)for(let colum = 0; colum < 11; colum++){
@@ -694,7 +700,7 @@ class Alien {
     }
 }
 
-},{"../src/script":"i8ewE","../public/img/alien.png":"jeTVA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jeTVA":[function(require,module,exports) {
+},{"../src/Actor":"5ReBW","../public/img/alien.png":"jeTVA","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"jeTVA":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('cwRTR') + "alien.f83b9dbf.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}]},["79gfX","i8ewE"], "i8ewE", "parcelRequirea0f5")

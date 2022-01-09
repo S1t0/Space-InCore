@@ -8,8 +8,8 @@ window.onload = () => {
   var ctx = canvas.getContext("2d");
 
   let actors = [
-    new Tanque(canvas),
-    new Alien(canvas),
+    new Tanque(ctx),
+    new Alien(ctx),
     new FPSviewer({ x: 15, y: 25 }),
     //new Disparo(canvas),
   ];
