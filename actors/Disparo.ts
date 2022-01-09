@@ -17,7 +17,7 @@ export class Disparo  {
     this.ancho = 2;
     this.alto = 5;
   }
-  update() {}
+  update(ctx:CanvasRenderingContext2D,delta:number) {}
   draw(ctx:CanvasRenderingContext2D, delta:number) {
     for (let i = 0; i < this.disparos.length; i++) {
       let dis = this.disparos[i];

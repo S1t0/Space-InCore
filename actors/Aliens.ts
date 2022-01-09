@@ -15,10 +15,7 @@ export class Alien extends Actor implements IActor {
     super(position)
     this.actorAlto = 35;
     this.actorAncho = 30;
-    this.position = {
-      y: 40,
-      x: 55,
-    };
+    this.position = position;
     this.image = new Image();
     this.image.src = imagenAlien;
     this.moveSpeed = 0.2;

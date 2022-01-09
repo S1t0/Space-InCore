@@ -1,7 +1,7 @@
 import { Point } from "./point";
 export interface IActor{
     position:Point;
-    update:(ctx:CanvasRenderingContext2D,delta:number) => void;
+    update?:(ctx:CanvasRenderingContext2D,delta:number) => void;
     keyboard_event?:(key:string)=>void;
     draw:(ctx:CanvasRenderingContext2D, delta:number)=>void;
 

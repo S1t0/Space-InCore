@@ -1,10 +1,9 @@
-import { Actor } from "../src/Actor";
+import { Actor, IActor } from "../src/Actor";
 import { Point } from "../src/point";
 import { Disparo } from "./Disparo";
-
-
 const imagenTanque = require("../public/img/nave.png"); //me daba fallo con el import
-export class Tanque{
+
+export class Tanque extends Actor implements IActor{
   actorAlto:number;
   actorAncho:number;
   position:Point;
@@ -12,20 +11,19 @@ export class Tanque{
   canvas:CanvasRenderingContext2D;
   image:HTMLImageElement;
   canvasAncho:800;
-  constructor(canvas:CanvasRenderingContext2D) {
+  constructor(position:Point) {
+    super(position)
     this.actorAlto = 40;
     this.actorAncho = 70;
-    this.position = {
-      y: 505,
-      x: 400,
-    };
+    this.position =position
+    
     this.image = new Image();
     this.image.src = imagenTanque;
     this.moveSpeed = 5;
-    this.canvas = canvas;
+    this.canvas =this.canvas;
     this.canvasAncho=800;
   }
-  update() {}
+  update(ctx:CanvasRenderingContext2D,delta:number) {}
   draw(ctx:CanvasRenderingContext2D, delta:number) {
     let position = this.position;
     let alto = this.actorAlto;
