@@ -35,7 +35,7 @@
 62C:\Users\andre\space\node_modules\posthtml-render\package.json132847583090509029 0
 83C:\Users\andre\space\node_modules\@parcel\fs-write-stream-atomic\test\slow-close.js132847583095589717 0
 76C:\Users\andre\space\node_modules\@babel\types\lib\converters\toStatement.js132847583106709837 0
-33C:\Users\andre\space\package.json132862034759340205 0
+33C:\Users\andre\space\package.json132862049490795258 0
 68C:\Users\andre\space\node_modules\cssstyle\lib\properties\padding.js132847583108051058 0
 65C:\Users\andre\space\node_modules\core-js\features\set\add-all.js132847583101144776 0
 48C:\Users\andre\space\node_modules\lodash\head.js132847583115447791 0
@@ -54,7 +54,7 @@
 55C:\Users\andre\space\node_modules\statuses\package.json132847583086406774 0
 59C:\Users\andre\space\node_modules\core-js\es\array\every.js132847583117970082 0
 108C:\Users\andre\space\node_modules\typescript\loc\lcl\TRK\TypeScriptDebugEngine\TypeScriptDebugEngine.dll.lcl132862007456302655 0
-38C:\Users\andre\space\package-lock.json132862007456993314 0
+38C:\Users\andre\space\package-lock.json132862049490785249 0
 71C:\Users\andre\space\node_modules\terser\node_modules\commander\LICENSE132847583088076797 0
 42C:\Users\andre\space\node_modules\svgo\bin132847583088957601 1
 90C:\Users\andre\space\node_modules\@parcel\package-manager\test\fixtures\packages\peers-2.0132847583107540592 1
@@ -410,7 +410,7 @@
 48C:\Users\andre\space\node_modules\yaml\README.md132847583107430492 0
 87C:\Users\andre\space\node_modules\lmdb-store\dependencies\lmdb\libraries\liblmdb\midl.h132847583109332220 0
 67C:\Users\andre\space\node_modules\vm-browserify\.github\FUNDING.yml132847583100043766 0
-52C:\Users\andre\space\node_modules\.package-lock.json132862007457163461 0
+52C:\Users\andre\space\node_modules\.package-lock.json132862049490955406 0
 86C:\Users\andre\space\node_modules\@babel\helper-validator-identifier\lib\identifier.js132847583090519037 0
 52C:\Users\andre\space\node_modules\acorn\CHANGELOG.md132847583102956417 0
 100C:\Users\andre\space\node_modules\stream-browserify\node_modules\readable-stream\readable-browser.js132847583101415015 0
