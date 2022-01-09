@@ -36,7 +36,6 @@ Lodash: para facilitarnos el picar codigo https://lodash.com/
 
 
 <img src="public/img/logo.jpg" width="400">
-<img src="public/img/nave2.png" width="400">
 <img src="public/img/titulo.png" width="400">
 <img src="public/img/actores.png" width="400">
 
