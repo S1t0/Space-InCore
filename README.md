@@ -23,6 +23,10 @@ npm install
 npm init -y
 npm run dev
 ```
+# Controles del juego
+Espacio: activamos el disparo de nuestro tanque
+
+Flechas de direccion: movemos de izquierda a derecha el tanque
 
 # Tecnologias
 Parcel: para desplegar en servidor nuestro juego  https://parceljs.org/
@@ -31,7 +35,6 @@ Typescrypt: para asegurarnos de no cometer errores de tipado en el codigo https:
 
 Lodash: para facilitarnos el picar codigo https://lodash.com/
 
-Parcel:para poder deplegar nuestro propio servidor y probar el juego al tiempo de picar codigo
 # Sprites
 
 
