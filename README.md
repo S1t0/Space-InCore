@@ -25,6 +25,7 @@ npm run dev
 ```
 # Controles del juego
 Espacio: activamos el disparo de nuestro tanque
+
 Flechas de direccion: movemos de izquierda a derecha el tanque
 
 # Tecnologias
