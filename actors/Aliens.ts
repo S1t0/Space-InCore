@@ -1,47 +1,46 @@
 import { Point } from "../src/point";
-const arrayAliens = [];
-import {Actor, IActor } from "../src/Actor";
-const imagenAlien = require("../public/img/alien.png")
-
+import { Actor, IActor } from "../src/Actor";
+import { checkLimits } from "../utils/checklimits";
+const imagenAlien = require("../public/img/alien.png");
 export class Alien extends Actor implements IActor {
-  actorAlto:number;
-  actorAncho:number;
-  position:Point;
-  image:HTMLImageElement;
-  moveSpeed:number;
-  aliens:Alien[];
-  canvas:CanvasRenderingContext2D;
-  constructor(position:Point) {
-    super(position)
+  actorAlto: number;
+  actorAncho: number;
+  position: Point;
+  image: HTMLImageElement;
+  moveSpeed: number;
+  aliens: Alien[];
+  canvas: CanvasRenderingContext2D;
+
+  constructor(position: Point, canvas: CanvasRenderingContext2D) {
+    super(position);
     this.actorAlto = 35;
     this.actorAncho = 30;
     this.position = position;
     this.image = new Image();
     this.image.src = imagenAlien;
-    this.moveSpeed = 0.2;
-    this.aliens = arrayAliens;
-    this.canvas = this.canvas;
+    this.moveSpeed = 35;
+    this.aliens = [];
+    this.canvas = canvas;
   }
-
-  draw(ctx:CanvasRenderingContext2D, delta:number) {
-    for (let fila = 0; fila < 5; fila++) {
-      for (let colum = 0; colum < 11; colum++) {
-        const ali = ctx.drawImage(
-          this.image,
-          colum * this.position.x + 100,
-          fila * this.position.y + 50,
-          this.actorAlto,
-          this.actorAncho
-        );
-        arrayAliens.push(ali);
-      }
+  update(ctx: CanvasRenderingContext2D, delta: number) {
+    let newPos: Point = {
+      x: this.position.x + this.moveSpeed*delta,
+      y: this.position.y,
+      
+    };
+    console.log(newPos);
+    if (checkLimits(newPos)) {
+      this.position.x= newPos.x; 
     }
   }
-  update(ctx:CanvasRenderingContext2D, delta:number) {
-    
-
+  draw(ctx: CanvasRenderingContext2D, delta: number) {
+    ctx.drawImage(
+      this.image,
+      this.position.x + 100,
+      this.position.y + 50,
+      this.actorAlto,
+      this.actorAncho
+    );
   }
-
-
 
 }
