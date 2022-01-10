@@ -31,13 +31,18 @@ Typescrypt: para asegurarnos de no cometer errores de tipado en el codigo https:
 
 Lodash: para facilitarnos el picar codigo https://lodash.com/
 
-
+Parcel:para poder deplegar nuestro propio servidor y probar el juego al tiempo de picar codigo
 # Sprites
 
 
 <img src="public/img/logo.jpg" width="400">
 <img src="public/img/titulo.png" width="400">
 <img src="public/img/actores.png" width="400">
+
+# Lo que saco de este proyecto:
+
+Aunque no este acabado y quede mucho por hacer, me llevo la experiencia de aprender mucho con este proyecto, 
+de pelearme con el codigo y aprender a buscar recursos y demas.
 
 
 
