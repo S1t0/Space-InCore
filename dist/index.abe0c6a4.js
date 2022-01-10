@@ -459,26 +459,30 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"Yx9M4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "actors", ()=>actors
+);
 var _tanque = require("../actors/Tanque");
 var _fpsviewer = require("../utils/FPSviewer");
 var _aliens = require("../actors/Aliens");
+let actors = [];
 window.onload = ()=>{
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
-    let actors = [
-        new _tanque.Tanque({
-            x: 400,
-            y: 500
-        }),
-        new _aliens.Alien({
-            x: 55,
-            y: 40
-        }),
-        new _fpsviewer.FPSviewer({
-            x: 15,
-            y: 25
-        }), 
-    ];
+    actors.push(new _tanque.Tanque({
+        x: 400,
+        y: 500
+    }, ctx));
+    actors.push(new _fpsviewer.FPSviewer({
+        x: 15,
+        y: 25
+    }));
+    for(let fila = 0; fila < 5; fila++)for(let colum = 0; colum < 11; colum++)actors.push(new _aliens.Alien({
+        x: 40 + colum * 50,
+        y: 40 + fila * 50
+    }, ctx));
+    console.log(_tanque.Tanque.newPosX);
     let lastFrame = 0;
     const render = (time)=>{
         let delta = (time - lastFrame) / 1000;
@@ -499,15 +503,17 @@ window.onload = ()=>{
     });
 };
 
-},{"../actors/Tanque":"kN2hs","../utils/FPSviewer":"j9gyD","../actors/Aliens":"23Ft1"}],"kN2hs":[function(require,module,exports) {
+},{"../actors/Tanque":"kN2hs","../utils/FPSviewer":"j9gyD","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","../actors/Aliens":"23Ft1"}],"kN2hs":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Tanque", ()=>Tanque
 );
 var _actor = require("../src/Actor");
+var _disparo = require("./Disparo");
+var _script = require("../src/script");
 const imagenTanque = require("../public/img/nave.png"); //me daba fallo con el import
 class Tanque extends _actor.Actor {
-    constructor(position){
+    constructor(position, canvas){
         super(position);
         this.actorAlto = 40;
         this.actorAncho = 70;
@@ -515,7 +521,7 @@ class Tanque extends _actor.Actor {
         this.image = new Image();
         this.image.src = imagenTanque;
         this.moveSpeed = 5;
-        this.canvas = this.canvas;
+        this.canvas = canvas;
         this.canvasAncho = 800;
     }
     update(ctx, delta) {
@@ -536,11 +542,17 @@ class Tanque extends _actor.Actor {
                 newPosX = this.position.x - this.moveSpeed;
                 if (0 <= newPosX) this.position.x = newPosX;
                 break;
+            case ` `:
+                for(let i = 0; i < _disparo.Disparo.length; i++)_script.actors.push(new _disparo.Disparo({
+                    x: newPosX + 11,
+                    y: 500
+                }));
+                break;
         }
     }
 }
 
-},{"../src/Actor":"5ReBW","../public/img/nave.png":"iDOWn","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5ReBW":[function(require,module,exports) {
+},{"../src/Actor":"5ReBW","./Disparo":"bA3GF","../src/script":"Yx9M4","../public/img/nave.png":"iDOWn","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"5ReBW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Actor", ()=>Actor
@@ -587,7 +599,38 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"iDOWn":[function(require,module,exports) {
+},{}],"bA3GF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Disparo", ()=>Disparo
+);
+class Disparo {
+    constructor(position){
+        this.velocidad = 2;
+        this.ancho = 4;
+        this.alto = 5;
+        this.position = position;
+    }
+    update(ctx, delta1) {
+        let newPos = {
+            x: this.position.x,
+            y: this.position.y - this.velocidad
+        };
+        this.position = newPos;
+    }
+    draw(ctx1, delta2) {
+        ctx1.fillStyle = "red";
+        ctx1.fillRect(this.position.x, this.position.y, this.ancho, this.alto);
+    }
+    keyboard_event(key) {
+    //let newPosY = this.position.y + this.velocidad;
+    }
+}
+function delta(ctx, CanvasRenderingContext2D, delta, number) {
+    throw new Error("Function not implemented.");
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"iDOWn":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('lcwS3') + "nave.bd3197fd.png" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"chiK4"}],"chiK4":[function(require,module,exports) {
@@ -648,33 +691,48 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Alien", ()=>Alien
 );
 var _actor = require("../src/Actor");
-const arrayAliens = [];
+var _checklimits = require("../utils/checklimits");
 const imagenAlien = require("../public/img/alien.png");
 class Alien extends _actor.Actor {
-    constructor(position){
+    constructor(position, canvas){
         super(position);
         this.actorAlto = 35;
         this.actorAncho = 30;
         this.position = position;
         this.image = new Image();
         this.image.src = imagenAlien;
-        this.moveSpeed = 0.2;
-        this.aliens = arrayAliens;
-        this.canvas = this.canvas;
+        this.moveSpeed = 35;
+        this.aliens = [];
+        this.canvas = canvas;
     }
-    draw(ctx, delta) {
-        for(let fila = 0; fila < 5; fila++)for(let colum = 0; colum < 11; colum++){
-            const ali = ctx.drawImage(this.image, colum * this.position.x + 100, fila * this.position.y + 50, this.actorAlto, this.actorAncho);
-            arrayAliens.push(ali);
+    update(ctx, delta) {
+        let newPos = {
+            x: this.position.x,
+            y: this.position.y
+        };
+        if (_checklimits.checkLimits(newPos)) {
+            this.position.x, this.moveSpeed;
+            this.position.x = newPos.x;
         }
     }
-    update(ctx1, delta1) {
+    draw(ctx1, delta1) {
+        ctx1.drawImage(this.image, this.position.x, this.position.y, this.actorAlto, this.actorAncho);
     }
 }
 
-},{"../src/Actor":"5ReBW","../public/img/alien.png":"7yyDJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"7yyDJ":[function(require,module,exports) {
+},{"../src/Actor":"5ReBW","../public/img/alien.png":"7yyDJ","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","../utils/checklimits":"9evKT"}],"7yyDJ":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('lcwS3') + "alien.f83b9dbf.png" + "?" + Date.now();
 
-},{"./helpers/bundle-url":"chiK4"}]},["iRSrf","Yx9M4"], "Yx9M4", "parcelRequirea0f5")
+},{"./helpers/bundle-url":"chiK4"}],"9evKT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "checkLimits", ()=>checkLimits
+);
+const checkLimits = (position)=>{
+    if (position.x < 740 && position.x > 10 && position.y < 500 && position.y > 0) return true;
+    return false;
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["iRSrf","Yx9M4"], "Yx9M4", "parcelRequirea0f5")
 
 //# sourceMappingURL=index.abe0c6a4.js.map

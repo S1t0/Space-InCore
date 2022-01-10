@@ -2,7 +2,7 @@
   "name": "space",
   "version": "1.0.0",
   "description": "Juego ambientado en el mitico Space Invaders",
-  "main": "index.js",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "parcel index.html",
@@ -23,6 +23,7 @@
   "keywords": [],
   "dependencies": {
     "lodash": "^4.17.21",
+    "node": "^17.3.0",
     "parcel": "^2.0.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.5.4"

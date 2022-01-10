@@ -6,6 +6,7 @@ import { Disparo } from "../actors/Disparo";
 
 export let actors: Actor[] = [];
 
+
 window.onload = () => {
    var canvas = document.getElementById("canvas") as HTMLCanvasElement;
    var ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
@@ -26,6 +27,7 @@ window.onload = () => {
     actors.forEach((e) => {
       e.draw(ctx, delta);
     });
+   
 
     window.requestAnimationFrame(render);
   };
