@@ -9,7 +9,7 @@
     "build": "npm run clean && npm run ghbuild",
     "ghbuild": "parcel build --dist-dir docs --public-url /Space-InCore index.html",
     "clean": "rimraf docs dist",
-    "start": "parcel serve -p $Port index.html"
+    "start": "parcel serve -p $PORT index.html"
   },
   "repository": {
     "type": "git",
